@@ -17,6 +17,7 @@ initDb();
 // Initialize Routes
 initRoute(app);
 
-app.listen(process.env.PORT || 3000, function () {
+const host = "0.0.0.0";
+app.listen(process.env.PORT || 3000, host, function () {
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
