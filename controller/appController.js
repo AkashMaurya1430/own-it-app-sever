@@ -1,3 +1,4 @@
+const { response } = require("express");
 const formidable = require("formidable");
 const fs = require("fs");
 const path = require("path");
@@ -73,4 +74,14 @@ module.exports.deleteAdvertisement = (req, res) => {
     },
     { useFindAndModify: true }
   );
+};
+
+module.exports.getAdvertisement = (req, res) => {
+  Advertisement.find({})
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
 };
