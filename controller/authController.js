@@ -3,6 +3,10 @@ const saltRounds = 10;
 const User = require("../model/User");
 
 module.exports.register = (req, res) => {
+  let response = {
+    success: false,
+    message: "",
+  };
   bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
     let newUser = new User({
       name: req.body.name,
@@ -14,28 +18,43 @@ module.exports.register = (req, res) => {
       if (err) {
         console.log(err);
         if (err.code === 11000) {
-          res.json("User Already Exist's");
+          response.success = false;
+          response.message = "User Already Exist's";
+          res.status(201).json(response);
         } else {
-          res.json(err);
+          response.success = false;
+          response.message = err.message;
+          res.status(201).json(response);
         }
       } else {
-        res.status(201).json("User Created Successfully");
+        response.success = true;
+        response.message = "User Created Successfully";
+        res.status(201).json(response);
       }
     });
   });
 };
 
 module.exports.login = async (req, res) => {
-  console.log(req);
+  let response = {
+    success: false,
+    message: "",
+  };
   await User.findOne({ contact: req.body.contact }, function (err, user) {
     if (!user) {
-      res.status(201).send("User does not exist!");
+      response.success = false;
+      response.message = "User does not exist!";
+      res.status(201).json(response);
     } else {
       if (bcrypt.compareSync(req.body.password, user.password)) {
-        res.status(201).send("User Logged In");
+        response.success = true;
+        response.message = "User Logged In";
+        res.status(201).json(response);
         // res.redirect("/login");
       } else {
-        res.status(201).send("Incorrect Password");
+        response.success = false;
+        response.message = "Incorrect Password";
+        res.status(201).json(response);
       }
     }
   });
