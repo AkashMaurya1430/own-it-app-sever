@@ -17,8 +17,8 @@ module.exports.createAdvertisement = async (req, res) => {
         return;
       }
 
-      //   image = "https://own-it-app-server.herokuapp.com/advImages/" + fileNamePrefix + files.photo.name;
-      image = "http://localhost:3000/advImages/" + fileNamePrefix + files.photo.name;
+      image = "https://own-it-app-server.herokuapp.com/advImages/" + fileNamePrefix + files.photo.name;
+      // image = "http://localhost:3000/advImages/" + fileNamePrefix + files.photo.name;
       const add = new Advertisement({
         title: fields.title,
         description: fields.description,
@@ -36,7 +36,7 @@ module.exports.createAdvertisement = async (req, res) => {
           // console.log("saved");
           res.status(200).json({
             success: true,
-            message: "Add Created Successfully",
+            message: "Adv Created Successfully",
           });
         }
       });
@@ -53,7 +53,7 @@ module.exports.deleteAdvertisement = (req, res) => {
     { _id: req.body.advertisementId },
     function (err, result) {
       if (!err) {
-        response = { success: true, reason: "Advertisement deleted successfully" };
+        response = { success: true, message: "Advertisement deleted successfully" };
         // Delete Blog Image From Folder
         let imagename = result.photo.split("/");
         let imagepath = path.join(__dirname, "../public/advImages/") + imagename[imagename.length - 1];
@@ -67,8 +67,8 @@ module.exports.deleteAdvertisement = (req, res) => {
         });
         res.status(200).json(response);
       } else {
-        response = { success: false, reason: err };
-        // console.log(err);
+        response = { success: false, message: err.message };
+        console.log(err);
         res.status(500).json(response);
       }
     },
@@ -78,10 +78,12 @@ module.exports.deleteAdvertisement = (req, res) => {
 
 module.exports.getAdvertisement = (req, res) => {
   Advertisement.find({})
-    .then((response) => {
-      res.send(response);
+    .then((responseData) => {
+      let response = { success: true, data: responseData };
+      res.status(201).json(response);
     })
     .catch((err) => {
-      res.send(err);
+      let response = { success: true, message: err.message };
+      res.status(400).json(response);
     });
 };

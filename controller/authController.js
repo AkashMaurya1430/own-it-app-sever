@@ -20,11 +20,11 @@ module.exports.register = (req, res) => {
         if (err.code === 11000) {
           response.success = false;
           response.message = "User Already Exist's";
-          res.status(201).json(response);
+          res.status(400).json(response);
         } else {
           response.success = false;
           response.message = err.message;
-          res.status(201).json(response);
+          res.status(400).json(response);
         }
       } else {
         response.success = true;
