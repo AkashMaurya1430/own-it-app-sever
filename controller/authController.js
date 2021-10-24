@@ -14,18 +14,19 @@ module.exports.register = (req, res) => {
       if (err) {
         console.log(err);
         if (err.code === 11000) {
-          res.send("User Already Exist's");
+          res.json("User Already Exist's");
         } else {
-          res.send(err);
+          res.json(err);
         }
       } else {
-        res.status(201).send("User Created Successfully");
+        res.status(201).json("User Created Successfully");
       }
     });
   });
 };
 
 module.exports.login = async (req, res) => {
+  console.log(req);
   await User.findOne({ contact: req.body.contact }, function (err, user) {
     if (!user) {
       res.status(201).send("User does not exist!");
