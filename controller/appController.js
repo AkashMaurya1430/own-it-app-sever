@@ -6,7 +6,6 @@ const Advertisement = require("../model/Advertisement");
 const User = require("../model/User");
 
 module.exports.createAdvertisement = async (req, res) => {
-  console.log(req.body);
   const form = new formidable.IncomingForm({
     keepExtensions: true,
   });
@@ -29,6 +28,7 @@ module.exports.createAdvertisement = async (req, res) => {
       });
       add.save((err, result) => {
         if (err) {
+          console.log(err);
           return res.status(500).json({
             success: false,
             message: err.message,
