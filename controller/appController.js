@@ -6,6 +6,7 @@ const Advertisement = require("../model/Advertisement");
 const User = require("../model/User");
 
 module.exports.createAdvertisement = async (req, res) => {
+  console.log(req.body);
   const form = new formidable.IncomingForm({
     keepExtensions: true,
   });
@@ -33,7 +34,7 @@ module.exports.createAdvertisement = async (req, res) => {
             message: err.message,
           });
         } else {
-          // console.log("saved");
+          console.log("saved");
           res.status(200).json({
             success: true,
             message: "Adv Created Successfully",
