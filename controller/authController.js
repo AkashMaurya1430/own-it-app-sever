@@ -17,7 +17,7 @@ module.exports.register = (req, res) => {
     newUser.save((err, result) => {
       if (err) {
         console.log(err);
-        if (err.code === 11000) {
+        if (err.code == 11000) {
           response.success = false;
           response.message = "User Already Exist's";
           res.status(400).json(response);
