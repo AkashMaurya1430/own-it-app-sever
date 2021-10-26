@@ -23,7 +23,7 @@ module.exports.register = (req, res) => {
           res.status(400).json(response);
         } else {
           response.success = false;
-          response.message = err.message;
+          response.message = "User Already Exist's";
           res.status(400).json(response);
         }
       } else {
