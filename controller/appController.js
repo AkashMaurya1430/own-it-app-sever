@@ -26,7 +26,7 @@ module.exports.createAdvertisement = async (req, res) => {
         price: fields.price,
         category: fields.category,
         photo: image,
-        createdBy: fields.userId,
+        createdBy: fields.userid,
       });
       add.save((err, result) => {
         if (err) {
