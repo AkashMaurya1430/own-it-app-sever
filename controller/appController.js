@@ -19,6 +19,7 @@ module.exports.createAdvertisement = async (req, res) => {
 
       image = "https://own-it-app-server.herokuapp.com/advImages/" + fileNamePrefix + files.photo.name;
       // image = "http://localhost:3000/advImages/" + fileNamePrefix + files.photo.name;
+      console.log(fields);
       const add = new Advertisement({
         title: fields.title,
         description: fields.description,
