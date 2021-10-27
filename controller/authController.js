@@ -28,7 +28,7 @@ module.exports.register = (req, res) => {
         }
       } else {
         response.success = true;
-        response.userId = user;
+        response.userId = user._id;
         response.message = "User Created Successfully";
         res.status(201).json(response);
       }
@@ -50,7 +50,7 @@ module.exports.login = async (req, res) => {
       if (bcrypt.compareSync(req.body.password, user.password)) {
         response.success = true;
         response.message = "User Logged In";
-        response.userId = user;
+        response.userId = user._id;
         res.status(201).json(response);
         // res.redirect("/login");
       } else {
