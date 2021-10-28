@@ -79,8 +79,21 @@ module.exports.deleteAdvertisement = (req, res) => {
   );
 };
 
-module.exports.getAdvertisement = (req, res) => {
+module.exports.getAdvertisementIDs = (req, res) => {
   Advertisement.find({})
+    .then((responseData) => {
+      str = "61509ad3d48c9e2ffbba9567,6173d359d33e5d9098211ac0";
+      let response = { data: str };
+      res.status(201).json(response);
+    })
+    .catch((err) => {
+      let response = { success: true, message: err.message };
+      res.status(400).json(response);
+    });
+};
+
+module.exports.getSingleAdvertisement = (req, res) => {
+  Advertisement.find({ _id: req.params.id })
     .then((responseData) => {
       let response = { success: true, data: responseData };
       res.status(201).json(response);
