@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 const appController = require("../controller/appController");
 
-router.get("/advertisements", appController.getAdvertisementIDs);
+router.get("/advertisements", appController.getAdvertisements);
 
 router.post("/advertisement/create", appController.createAdvertisement);
 

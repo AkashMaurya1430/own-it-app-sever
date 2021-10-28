@@ -26,7 +26,7 @@ module.exports.createAdvertisement = async (req, res) => {
         price: fields.price,
         category: fields.category,
         photo: image,
-        createdBy: fields.userid,
+        userid: fields.userid,
       });
       add.save((err, result) => {
         if (err) {
@@ -79,12 +79,12 @@ module.exports.deleteAdvertisement = (req, res) => {
   );
 };
 
-module.exports.getAdvertisementIDs = (req, res) => {
+module.exports.getAdvertisements = (req, res) => {
   Advertisement.find({})
     .then((responseData) => {
-      str = "61509ad3d48c9e2ffbba9567,6173d359d33e5d9098211ac0";
-      let response = { data: str };
-      res.status(201).json(response);
+      // str = "61509ad3d48c9e2ffbba9567,6173d359d33e5d9098211ac0";
+      // let response = { data: str };
+      res.status(201).json(responseData);
     })
     .catch((err) => {
       let response = { success: true, message: err.message };
