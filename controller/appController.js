@@ -93,10 +93,10 @@ module.exports.getAdvertisementIDs = (req, res) => {
 };
 
 module.exports.getSingleAdvertisement = (req, res) => {
-  Advertisement.find({ _id: req.params.id })
+  Advertisement.findOne({ _id: req.params.id })
     .then((responseData) => {
-      let response = { success: true, data: responseData };
-      res.status(201).json(response);
+      // let response = { responseData };
+      res.status(201).json(responseData);
     })
     .catch((err) => {
       let response = { success: true, message: err.message };
