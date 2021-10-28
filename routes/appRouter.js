@@ -6,7 +6,7 @@ router.get("/advertisements", appController.getAdvertisementIDs);
 
 router.post("/advertisement/create", appController.createAdvertisement);
 
-router.get("/advertisement/:id", appController.getSingleAdvertisement);
+router.get("/advertisement", appController.getSingleAdvertisement);
 
 router.post("/advertisement/delete", appController.deleteAdvertisement);
 

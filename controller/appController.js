@@ -93,7 +93,7 @@ module.exports.getAdvertisementIDs = (req, res) => {
 };
 
 module.exports.getSingleAdvertisement = (req, res) => {
-  Advertisement.findOne({ _id: req.params.id })
+  Advertisement.findOne({ _id: req.query.id })
     .then((responseData) => {
       // let response = { responseData };
       res.status(201).json(responseData);
