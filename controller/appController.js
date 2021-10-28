@@ -83,7 +83,7 @@ module.exports.getAdvertisement = (req, res) => {
   Advertisement.find({})
     .then((responseData) => {
       let response = { success: true, data: responseData };
-      res.status(201).json(responseData);
+      res.status(201).json(response);
     })
     .catch((err) => {
       let response = { success: true, message: err.message };
