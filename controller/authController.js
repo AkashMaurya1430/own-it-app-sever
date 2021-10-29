@@ -13,7 +13,7 @@ module.exports.register = (req, res) => {
       contact: req.body.contact,
       password: hash,
     });
-
+    console.log(newUser);
     newUser.save((err, result) => {
       if (err) {
         console.log(err);
