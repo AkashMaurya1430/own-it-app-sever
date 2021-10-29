@@ -28,7 +28,7 @@ module.exports.register = (req, res) => {
         }
       } else {
         response.success = true;
-        response.userId = user._id;
+        response.userId = result._id;
         response.message = "User Created Successfully";
         res.status(201).json(response);
       }
